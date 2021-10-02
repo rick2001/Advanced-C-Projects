@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include <string.h>
  
-// comment added by rick2001
-/*
-Function : extractIpAddress
-Arguments : 
-1) sourceString - String pointer that contains ip address
-2) ipAddress - Target variable short type array pointer that will store ip address octets
-*/
 void extractIpAddress(unsigned char *sourceString,short *ipAddress)
 {
     unsigned short len=0;
@@ -19,18 +12,11 @@ void extractIpAddress(unsigned char *sourceString,short *ipAddress)
         if(sourceString[i]!='.'){
             buf[cnt++] =sourceString[i];
         }
-        if(sourceString[i]=='.' || i==len-1){  //added by rick2001
-            buf[cnt]='\0';
-            cnt=0;
-            oct[cnt1++]=atoi(buf);
-        }
+        
     }
- 
- // added and modified by rick2001
     ipAddress[0]=oct[0];
-    ipAddress[1]=oct[1]; 
-    ipAddress[2]=oct[2];
-    ipAddress[3]=oct[3];
+    ipAddress[1]=oct[2];
+    ipAddress[2]=oct[3];
 }
 
 int main()
@@ -47,11 +33,6 @@ int main()
     
     if(ipAddress[0]>=0 && ipAddress[0]<=127)
         printf("Class A Ip Address.\n");
- // new conditions added and modified by rick2001
-    if(ipAddress[0]>127 && ipAddress[0]<191)
-        printf("Class B Ip Address.\n");
-    if(ipAddress[0]>191 && ipAddress[0]<224)
-        printf("Class C Ip Address.\n");
     if(ipAddress[0]>224 && ipAddress[0]<=239)
         printf("Class D Ip Address.\n");
     if(ipAddress[0]>239)
